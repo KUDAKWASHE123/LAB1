@@ -1,25 +1,48 @@
-// complex.cpp
-// Multiplying complex numbers
-
-#include <iostream>	// contains the definition of cout, endl
-#include <complex>	// contains the complex class definition
-
-using namespace std; // cout, endl, complex are all part of this namespace
-
+#include <iostream>
+#include <complex>
+#include <cmath>
+using namespace std;
+double get_values(double&,double&,double&); 
+bool check_root(double,double,double);
+void solution();  
+double complex_solution(double,double,double); 
+double normal_solution(double,double,double);
 int main()
 {
-    using Complex_number=complex<float>;
-	auto num1 = Complex_number{2.0, 2.0};  // use auto for type deduction
-	auto num2 = Complex_number{4.0, -2.0}; // use uniform initialisation syntax (curly braces)
+    solution(); 
+  return 0;    
+} 
+void solution()
+{
+    double  a,b,c; 
+    get_values(a,b,c);
+    if(check_root(a,b,c)){complex_solution(a,b,c);}
+    else{normal_solution(a,b,c);} 
+}
+double get_values(double& a,double& b,double& c)
+{
 
-	auto answer = num1 * num2; // type deduced for 'answer' is: complex<float>
+    cin>>a>>b>>c;
+    return 0;
+} 
+double complex_solution(double a,double b,double c)
+{
+     using complex_number= complex<float>;
+     auto root1=complex_number{(-1*b)/(2*a),((double)(0.5*(1/a)))*sqrt(abs(pow(b,2)-4*a*c))};
+     auto root2=complex_number{(-1*b)/(2*a),((double)(-0.5*(1/a)))*sqrt(abs(pow(b,2)-4*a*c))};
+     cout<<"root1 "<<root1.real()<<"+"<<root1.imag()<<"j"<<endl;
+     cout<<"root2 "<<root2.real()<<"+"<<root2.imag()<<"j"<<endl;
+    return 0;
 
-	cout << "The answer is: " << answer << endl;
-	cout << "Or in a more familiar form: " << answer.real() 
-			<< " + " << answer.imag() << "j" 
-			<< endl	<< endl;
-
-	// answer++;
-
-	return 0;
+}
+double normal_solution(double a ,double b,double c)
+{
+    cout<<"root1 "<<((-1*b)/(2*a))+0.5*(1/a)*(sqrt(abs(pow(b,2)-4*a*c)))<<endl; 
+    cout<<"root2 "<<((-1*b)/(2*a))-0.5*(1/a)*(sqrt(abs(pow(b,2)-4*a*c)))<<endl;
+    return 0;
+}
+bool check_root(double a,double b,double c)
+{
+    if((pow(b,2)-4*a*c)>=0){return false;}
+    else{return true;}
 }
