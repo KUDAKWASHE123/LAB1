@@ -14,6 +14,7 @@ using namespace std;
 
 class Screen {
 public:
+using Direction=string; 
 	// Screen's constructor
 	Screen( string::size_type height = 40, string::size_type width = 8, char bkground = '#');
 
@@ -36,6 +37,7 @@ public:
 	void down();
 	// move the cursor to the specified row and column
 	void move(string::size_type row, string::size_type col);
+    void move(Direction dir);
 
 	// get the character at the cursor's current position
 	char get() const { return _screen[cursor_]; }

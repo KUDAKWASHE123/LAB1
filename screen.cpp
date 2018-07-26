@@ -64,6 +64,17 @@ void Screen::move( string::size_type row, string::size_type col )
 
 	return;
 }
+ void Screen::move(Direction dir)
+ {
+     if(dir=="HOME"){string::size_type cursor_ = TOP_LEFT;};
+//	if ( checkRange( row, col ) )
+//	{     
+     if(dir=="FORWARD"){forward();};
+     if(dir=="BACK"){back();};
+     if(dir=="UP"){up();};
+     if(dir=="DOWN"){down();};
+//    }
+ }
 
 char Screen::get( string::size_type row, string::size_type col )
 {
@@ -81,7 +92,7 @@ void Screen::set( char ch )
 
 	return;
 }
-//this const ensures that the member function does not modify any of the class variables: 
+
 void Screen::set( const string& s )
 {   // write string beginning at current cursor_ position
 	auto space = remainingSpace();
@@ -141,7 +152,7 @@ void Screen::reSize( string::size_type h, string::size_type w, char bkground )
 
 	return;
 }
-//this const ensures that the member function does not modify any of the class variables:
+
 void Screen::display() const
 {
 	for ( string::size_type ix = 0; ix < height_; ++ix )
@@ -154,7 +165,7 @@ void Screen::display() const
 	}
 	return;
 }
-//this const ensures that the member function does not modify any of the class variables:
+
 bool Screen::checkRange( string::size_type row, string::size_type col ) const
 {   // validate coordinates
 	if (row < 1 || row > height_ || col < 1 || col > width_)
@@ -164,13 +175,13 @@ bool Screen::checkRange( string::size_type row, string::size_type col ) const
 	}
 	return true;
 }
-//this const ensures that the member function does not modify any of the class variables:
+
 string::size_type Screen::remainingSpace() const
 {   // includes current position
 	auto size = width_ * height_;
 	return(size - cursor_);
 }
-//this const ensures that the member function does not modify any of the class variables:
+
 string::size_type Screen::row() const
 {   // return current row
 	return (cursor_ + width_)/width_;
