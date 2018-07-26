@@ -6,13 +6,8 @@ using namespace std;
 
 int main()
 {
-	auto myScreen = Screen{6,6,'#'};
-myScreen.move("UP");
-myScreen.move("UP");
-myScreen.move("UP");
-myScreen.move("FORWARD");
-myScreen.set('*');
-    
+	auto myScreen = Screen{10,10,'-'};
+myScreen.draw_square(5,5,5);
 	myScreen.display();
 	cout << endl;
 	return 0;

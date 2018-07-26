@@ -57,6 +57,7 @@ using Direction=string;
 	void display() const;
 	// check whether the specified co-ordinates lie within the screen
 	bool checkRange(string::size_type row, string::size_type col) const;
+    int draw_square(string::size_type row, string::size_type col,int); 
 
 private:
 	// constants

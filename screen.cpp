@@ -51,8 +51,28 @@ void Screen::down()
 
 	return;
 }
+int Screen::draw_square(string::size_type row, string::size_type col,int size)
+{
+    move(row,col); 
+   int check=width_;
+for(int i=1;i<=height_;i++)
+{
+    if(cursor_+1==(check)){cout<<"Can not place Top left edge on the right edge of the screen"<<endl;return 0;}
+    check+=width_; 
+} 
+  if(((width_)*(height_)-(cursor_+1)<width_)){cout<<"Can not place Top left edge on the bottom edge of the screen"<<endl;return 0;};
+int space_horizontal=width_-col+1;
+int space_vertical=height_-row+1; 
+if(size>space_horizontal||size>space_vertical){cout<<"Size too big "<<endl; return 0;}
+for(int num=0;num<size;num++){set('X');forward();}back();
+for(int num=0;num<size;num++){set('X');down();}up(); 
+for(int num=0;num<size;num++){set('X');back();}forward();
+for(int num=0;num<size;num++){set('X');up();};
+cout<<endl; 
+  return 0; 
+}
 
-void Screen::move( string::size_type row, string::size_type col )
+void Screen::move( string::size_type row, string::size_type col)
 {   // move cursor_ to absolute position
 	// valid screen position?
 	if ( checkRange( row, col ) )
@@ -61,6 +81,7 @@ void Screen::move( string::size_type row, string::size_type col )
 		auto row_loc = (row-1) * width_;
 		cursor_ = row_loc + col - 1;
 	}
+
 
 	return;
 }
