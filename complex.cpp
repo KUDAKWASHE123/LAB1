@@ -17,8 +17,8 @@ int main()
 	cout << "Or in a more familiar form: " << answer.real() 
 			<< " + " << answer.imag() << "j" 
 			<< endl	<< endl;
-
+//The post increment does not oparate on the complex data type because the post increment is of type int whereas
+// the complex number consists of two parts i.e real and imaginary part. So the program will be confused which part to increment 
 	// answer++;
-
 	return 0;
 }
